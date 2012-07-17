@@ -24,6 +24,7 @@ and optional ObjectCache.ttl 5.minutes (or anything else)
 From that moment on you can use ObjectCache.key to access the object you defined as "key".
 
 The yml file looks like this:
+
     key:
       name: ClassName
       id: 4
