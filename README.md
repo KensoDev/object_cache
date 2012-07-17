@@ -7,6 +7,7 @@ Simple object caching for ruby.
 Add this line to your application's Gemfile:
 
     gem 'object_cache'
+
 And then execute:
 
     $ bundle
@@ -23,12 +24,13 @@ and optional ObjectCache.ttl 5.minutes (or anything else)
 From that moment on you can use ObjectCache.key to access the object you defined as "key".
 
 The yml file looks like this:
-	key:
-	  name: ClassName
-	  id: 4
-	another_key:
-	  name: ClassName
-	  id: 5
+    key:
+      name: ClassName
+      id: 4
+    another_key:
+      name: ClassName
+      id: 5
+
 it assumes ClassName has a method find which can be used by ClassName.find([4,5]) and returns the correct objects. (usually ActiveRecord, but can be used for mongoid objects, etc.)
 
 ## Contributing
