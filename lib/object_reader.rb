@@ -21,8 +21,8 @@ class ObjectCache
     def grouped_objects
       product = {}
       hash.each do |key,value|
-        product[value[:name]] ||= []
-        product[value[:name]] << [key, value[:id]]
+        product[value["name"]] ||= []
+        product[value["name"]] << [key, value["id"]]
       end
       product
     end

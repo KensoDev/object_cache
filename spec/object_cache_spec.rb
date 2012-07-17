@@ -13,16 +13,16 @@ describe ObjectCache do
     before :all do
       @hash = {
         foo: {
-          name: "User",
-          id: 1
+          "name" => "User",
+          "id" => 1
         },
         bar: {
-          name: "User",
-          id: 2
+          "name" => "User",
+          "id" => 2
         },
         baz: {
-          name: "Blah",
-          id: 4
+          "name" => "Blah",
+          "id" => 4
         }
       }
 
