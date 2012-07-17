@@ -23,14 +23,14 @@ class ObjectCache
     groups = @@reader.grouped_objects
     groups.each do |klass, ids|
       #we need both ids and items to be in the same order for this to work
-      ids.sort!{|a,b| b.first <=> a.first}
+      ids.sort!{|a,b| a.last <=> b.last}
       items = constantize(klass).find(ids.collect(&:last))
-      items.sort!{|a,b| b.id <=> a.id}
+      items.sort!{|a,b| a.id <=> b.id}
 
+      @i = 0
       items.each do |item|
-        i ||= 0
-        @@cache[ids[i][0].to_s] = item
-        i+=1
+        @@cache[ids[@i].first.to_s] = item
+        @i+=1
       end
       
     end
@@ -49,7 +49,7 @@ class ObjectCache
   end
 
   def self.hash
-    @@hash
+    @@cache
   end
 
   def self.method_missing(method_name)
