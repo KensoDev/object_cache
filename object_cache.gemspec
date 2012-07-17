@@ -4,9 +4,9 @@ require File.expand_path('../lib/object_cache/version', __FILE__)
 Gem::Specification.new do |gem|
   gem.authors       = ["Tom Caspy"]
   gem.email         = ["tcaspy@gmail.com"]
-  gem.description   = %q{TODO: Write a gem description}
-  gem.summary       = %q{TODO: Write a gem summary}
-  gem.homepage      = ""
+  gem.description   = %q{simple object cache for ruby}
+  gem.summary       = %q{hash table for object cache with defined TTL}
+  gem.homepage      = "https://github.com/KensoDev/object_cache"
 
   gem.executables   = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }
   gem.files         = `git ls-files`.split("\n")
