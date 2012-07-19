@@ -1,11 +1,14 @@
 require "object_reader"
+require "object_cache/class_cacher"
+require "object_cache/memory_store"
 
 class ObjectCache
   @@cache ||= {}
-  @@ttl ||= 60
+  @@ttl ||= 300
   @@file_or_hash ||= nil
   @@reader ||= nil
   @@expires_at ||= nil
+  @@cache_store ||= ObjectCache::MemoryStore
 
 
   def self.source(file_or_hash)
@@ -16,9 +19,16 @@ class ObjectCache
     @@ttl = ttl
   end
 
+  def self.ttl
+    @@ttl
+  end
+
+  def self.cache_store
+    @@cache_store
+  end
+
   def self.refresh_the_cache
     @@reader ||= Reader.new(@@file_or_hash)
-    @@cache ||= {}
 
     groups = @@reader.grouped_objects
     groups.each do |klass, ids|
@@ -29,12 +39,13 @@ class ObjectCache
 
       @i = 0
       items.each do |item|
-        @@cache[ids[@i].first.to_s] = item
+        cache_store.hash_set(ids[@i].first.to_s, item)
+        #@@cache[ids[@i].first.to_s] = item
         @i+=1
       end
       
     end
-    @@expires_at = Time.now + (@@ttl || 5.minutes)
+    @@expires_at = Time.now + (@@ttl || 300)
   end
 
   def self.constantize(camel_cased_word)
@@ -48,16 +59,12 @@ class ObjectCache
     constant
   end
 
-  def self.hash
-    @@cache
-  end
-
   def self.method_missing(method_name)
-    if @@cache.empty? || @@expires_at < Time.now
+    if cache_store.hash_empty? || @@expires_at < Time.now
       refresh_the_cache
     end
 
-    @@cache[method_name.to_s]
+    cache_store.hash_get(method_name.to_s)
   end
 
 end

@@ -1,4 +1,5 @@
 require 'yaml'
+require 'object_cache'
 
 class ObjectCache
   class Reader
