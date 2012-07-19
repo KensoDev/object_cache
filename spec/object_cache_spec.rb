@@ -47,6 +47,7 @@ describe ObjectCache do
 
       ObjectCache.foo.should == u1
     end
+
   end
 
 end
