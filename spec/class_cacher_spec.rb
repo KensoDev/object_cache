@@ -2,7 +2,6 @@ require 'spec_helper'
 
 class Foo
   def self.find(ids)
-    query
     return ids
   end
 end
