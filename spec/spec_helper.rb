@@ -1,4 +1,5 @@
 require "object_cache"
+require "timecop"
   RSpec.configure do |config|
     # config.mock_with :mocha
     # config.mock_with :flexmock
