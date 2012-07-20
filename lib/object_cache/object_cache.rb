@@ -23,6 +23,10 @@ class ObjectCache
     @@cache_store
   end
 
+  def self.cache_store=(store)
+    @@cache_store = store
+  end
+
   def self.refresh_the_cache
     @@reader ||= Reader.new(@@file_or_hash)
 

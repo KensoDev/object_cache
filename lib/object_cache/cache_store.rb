@@ -1,6 +1,7 @@
 class ObjectCache
   class CacheStore
     class << self
+      
       def get(klass, id)
         raise NotImplementedError
       end
@@ -16,6 +17,11 @@ class ObjectCache
       def hash_set(key, value)
         raise NotImplementedError
       end
+
+      def fetch_from_array(klass, ids)
+        ObjectCache.constantize(klass).find(ids)
+      end
+
     end
   end
 end
