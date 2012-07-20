@@ -29,19 +29,6 @@ class ObjectCache
       end
     end
 
-    def self.fetch_fresh_results(klass, to_set)
-      #puts to_set.inspect
-      return nil if to_set.size == 0
-      results = []
-      fresh_results = fetch_from_array(klass, to_set)
-
-      fresh_results.each do |item|
-        results << set(klass, item.id, item)
-      end
-
-      results
-    end
-
     def self.get(klass, id)
       @@cache[klass][id].first
     end
