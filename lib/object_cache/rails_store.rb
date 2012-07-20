@@ -28,6 +28,7 @@ class ObjectCache
 
       def set(klass, id, value)
         Rails.cache.write(cache_key(klass, id), value, expires_at: ObjectCache.ttl)
+        return value
       end
 
       def cache_key(klass, id)
