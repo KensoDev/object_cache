@@ -47,6 +47,10 @@ class ObjectCache
         "object_cache:#{key}"
       end
 
+      def hash_empty?
+        false
+      end
+
     end
   end
 end

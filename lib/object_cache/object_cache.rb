@@ -3,7 +3,7 @@ class ObjectCache
   @@ttl ||= 300
   @@file_or_hash ||= nil
   @@reader ||= nil
-  @@expires_at ||= nil
+  @@expires_at ||= Time.now - 1000000
   @@cache_store ||= ObjectCache::MemoryStore
 
 
