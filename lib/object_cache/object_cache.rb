@@ -3,7 +3,7 @@ class ObjectCache
   @@ttl ||= 300
   @@file_or_hash ||= nil
   @@reader ||= nil
-  @@expires_at ||= Time.now - 1000000
+  @@expires_at ||= 0
   @@cache_store ||= ObjectCache::MemoryStore
 
 
@@ -59,7 +59,7 @@ class ObjectCache
   end
 
   def self.method_missing(method_name)
-    if cache_store.hash_empty? || @@expires_at < Time.now
+    if cache_store.hash_empty? || @@expires_at.to_i < Time.now.to_i
       refresh_the_cache
     end
 
